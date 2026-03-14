@@ -87,7 +87,14 @@ export default function Admin() {
                   <div className={`font-display text-[1.8rem] font-bold leading-none ${tierColor}`}>{b.score}</div>
                   <div className="text-[0.7rem] text-eq-sec uppercase tracking-widest mt-0.5">EcoScore</div>
                 </div>
-                <div className="text-[1.4rem]">{tierEmoji}</div>
+                <div className="text-right text-[0.7rem] text-eq-sec uppercase tracking-widest">
+                  <div className="text-[1.4rem] leading-none mb-0.5">{tierEmoji}</div>
+                  <span>
+                    {b.plan === 'starter' && 'Starter · $19/mo'}
+                    {b.plan === 'growth' && 'Growth · $79/mo'}
+                    {b.plan === 'enterprise' && 'Enterprise · $299/mo'}
+                  </span>
+                </div>
               </div>
 
               <div className="flex flex-col gap-1 mb-4 flex-1">

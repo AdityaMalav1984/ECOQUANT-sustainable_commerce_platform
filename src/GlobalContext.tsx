@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState } from 'react';
 
 export type BizMetrics = { energy: number, waste: number, supply: number, water: number, transport: number, social: number };
-export type Business = { id: number, name: string, type: string, score: number, stars: number, approved: boolean, metrics: BizMetrics };
+export type Business = { id: number, name: string, type: string, score: number, stars: number, approved: boolean, metrics: BizMetrics, plan: 'starter' | 'growth' | 'enterprise' };
 export type Transaction = { id: number, name: string, pts: string, type: 'earn' | 'redeem', date: string };
 export type FraudAlert = { id: number, title: string, desc: string, time: string };
 
@@ -22,11 +22,11 @@ const GlobalContext = createContext<GlobalState | undefined>(undefined);
 
 export const GlobalProvider: React.FC<{children: React.ReactNode}> = ({ children }) => {
   const [businesses, setBusinesses] = useState<Business[]>([
-    { id: 1, name: 'EcoMart Superstore', type: 'Grocery / Retail', score: 87, stars: 8, approved: true, metrics: { energy: 20, waste: 18, supply: 12, water: 8, transport: 15, social: 14 }},
-    { id: 2, name: 'GreenBrew Café', type: 'Food & Beverage', score: 74, stars: 7, approved: true, metrics: { energy: 18, waste: 15, supply: 10, water: 7, transport: 12, social: 12 }},
-    { id: 3, name: 'SolarShop Electronics', type: 'Electronics', score: 71, stars: 7, approved: false, metrics: { energy: 25, waste: 12, supply: 10, water: 5, transport: 10, social: 9 }},
-    { id: 4, name: 'NatureWear Fashion', type: 'Apparel', score: 62, stars: 6, approved: false, metrics: { energy: 15, waste: 12, supply: 10, water: 8, transport: 8, social: 9 }},
-    { id: 5, name: 'BioFarm Fresh', type: 'Agriculture', score: 58, stars: 5, approved: false, metrics: { energy: 12, waste: 10, supply: 12, water: 9, transport: 5, social: 10 }},
+    { id: 1, name: 'EcoMart Superstore', type: 'Grocery / Retail', score: 87, stars: 8, approved: true, plan: 'growth', metrics: { energy: 20, waste: 18, supply: 12, water: 8, transport: 15, social: 14 }},
+    { id: 2, name: 'GreenBrew Café', type: 'Food & Beverage', score: 74, stars: 7, approved: true, plan: 'starter', metrics: { energy: 18, waste: 15, supply: 10, water: 7, transport: 12, social: 12 }},
+    { id: 3, name: 'SolarShop Electronics', type: 'Electronics', score: 71, stars: 7, approved: false, plan: 'growth', metrics: { energy: 25, waste: 12, supply: 10, water: 5, transport: 10, social: 9 }},
+    { id: 4, name: 'NatureWear Fashion', type: 'Apparel', score: 62, stars: 6, approved: false, plan: 'starter', metrics: { energy: 15, waste: 12, supply: 10, water: 8, transport: 8, social: 9 }},
+    { id: 5, name: 'BioFarm Fresh', type: 'Agriculture', score: 58, stars: 5, approved: false, plan: 'starter', metrics: { energy: 12, waste: 10, supply: 12, water: 9, transport: 5, social: 10 }},
   ]);
 
   const [customer, setCustomer] = useState({

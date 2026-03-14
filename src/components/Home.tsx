@@ -38,7 +38,7 @@ export default function Home({ onNavigate }: { onNavigate: (tab: string) => void
         <div className="flex gap-3 justify-center flex-wrap">
           <button 
             onClick={() => onNavigate('customer')}
-            className="px-7 py-3 rounded-xl font-sans text-[0.9rem] font-semibold bg-eq-accent text-eq-bg hover:bg-eq-accent/80 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(132,204,22,0.3)] transition-all tracking-wide cursor-pointer"
+            className="px-7 py-3 rounded-xl font-sans text-[0.9rem] font-semibold bg-eq-accent text-eq-bg hover:bg-eq-accent/80 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(34,211,238,0.35)] transition-all tracking-wide cursor-pointer"
           >
             Open Wallet →
           </button>

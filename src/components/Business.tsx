@@ -5,6 +5,7 @@ export default function Business() {
   const { addBusiness } = useGlobal();
   const [name, setName] = useState('');
   const [type, setType] = useState('Food & Beverage');
+  const [plan, setPlan] = useState<'starter' | 'growth' | 'enterprise'>('starter');
   const [metrics, setMetrics] = useState({ 
     energy: 12, 
     waste: 10, 
@@ -55,7 +56,7 @@ export default function Business() {
       alert('Please enter a business name');
       return;
     }
-    addBusiness({ name, type, score, stars, metrics });
+    addBusiness({ name, type, score, stars, metrics, plan });
     setShowToast(true);
     setTimeout(() => setShowToast(false), 3000);
     setName('');
@@ -70,11 +71,11 @@ export default function Business() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Score Card */}
-        <div className="text-center p-10 bg-[#2d3a28]/40 border border-white/5 rounded-3xl relative overflow-hidden flex flex-col items-center justify-center">
+        <div className="text-center p-10 bg-white border border-eq-border rounded-3xl relative overflow-hidden flex flex-col items-center justify-center">
           
           <div className="w-[200px] h-[200px] mx-auto mb-2 relative">
             <svg width="200" height="200" viewBox="0 0 200 200" className="-rotate-90">
-              <circle cx="100" cy="100" r="80" fill="none" className="stroke-[#3a4a34]" strokeWidth="12"/>
+              <circle cx="100" cy="100" r="80" fill="none" className="stroke-[#E5E7EB]" strokeWidth="12"/>
               <circle 
                 cx="100" cy="100" r="80" fill="none" 
                 className={`${arcColor} transition-all duration-800 ease-[cubic-bezier(0.4,0,0.2,1)]`} 
@@ -84,7 +85,7 @@ export default function Business() {
               />
             </svg>
             <div className="absolute inset-0 flex flex-col items-center justify-center -mt-4">
-              <div className="font-display text-[4.5rem] font-bold text-eq-accent leading-none tracking-tighter" style={{ textShadow: '0 2px 10px rgba(132,204,22,0.2)' }}>{score}</div>
+              <div className="font-display text-[4.5rem] font-bold text-eq-accent leading-none tracking-tighter" style={{ textShadow: '0 2px 10px rgba(107,142,35,0.3)' }}>{score}</div>
               <div className="text-[0.85rem] text-eq-sec tracking-wider mt-1">/ 100</div>
             </div>
           </div>
@@ -99,10 +100,10 @@ export default function Business() {
 
           <div className="mt-8 pt-6 border-t border-eq-border w-full">
             <p className="text-[0.75rem] text-eq-sec uppercase tracking-[0.15em] mb-3 font-semibold">POINTS MULTIPLIER</p>
-            <div className="font-display text-[3rem] font-bold text-eq-accent tracking-tighter leading-none" style={{ textShadow: '0 2px 10px rgba(132,204,22,0.2)' }}>
+            <div className="font-display text-[3rem] font-bold text-eq-accent tracking-tighter leading-none" style={{ textShadow: '0 2px 10px rgba(107,142,35,0.3)' }}>
               x{(stars / 5).toFixed(1)}
             </div>
-            <p className="text-[0.8rem] text-eq-sec mt-3">per ₹100 customer spends</p>
+            <p className="text-[0.8rem] text-eq-sec mt-3">per $100 customer spends</p>
           </div>
         </div>
 
@@ -136,6 +137,18 @@ export default function Business() {
                 <option>Other</option>
               </select>
             </div>
+            <div>
+              <label className="block text-[0.85rem] font-semibold mb-2 text-eq-text">Subscription Plan</label>
+              <select
+                value={plan}
+                onChange={e => setPlan(e.target.value as 'starter' | 'growth' | 'enterprise')}
+                className="w-full p-3 bg-eq-bg border border-eq-border rounded-xl text-eq-text font-sans text-[0.9rem] outline-none focus:border-eq-accent transition-colors [&>option]:bg-eq-bg"
+              >
+                <option value="starter">Starter — $19/mo</option>
+                <option value="growth">Growth — $79/mo</option>
+                <option value="enterprise">Enterprise — $299/mo</option>
+              </select>
+            </div>
           </div>
 
           <h3 className="mb-6 text-[1.1rem] font-display font-semibold pt-6 border-t border-eq-border text-eq-text">Sustainability Metrics</h3>
@@ -149,7 +162,7 @@ export default function Business() {
           </div>
           <button 
             onClick={handleSubmit}
-            className="w-full mt-6 bg-eq-accent text-eq-bg py-3.5 rounded-xl font-sans font-semibold text-[0.95rem] hover:bg-eq-accent/80 hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(132,204,22,0.4)] transition-all cursor-pointer"
+            className="w-full mt-6 bg-eq-accent text-eq-bg py-3.5 rounded-xl font-sans font-semibold text-[0.95rem] hover:bg-eq-accent/80 hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(107,142,35,0.4)] transition-all cursor-pointer"
           >
             Submit for Certification ✓
           </button>

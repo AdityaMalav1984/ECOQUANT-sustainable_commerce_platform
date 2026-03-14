@@ -31,7 +31,7 @@ export default function Customer() {
       const size = 120, cells = 15, cell = size / cells;
       ctx.fillStyle = '#fff';
       ctx.fillRect(0, 0, size, size);
-      ctx.fillStyle = '#1a2e1a';
+      ctx.fillStyle = '#0f172a';
       
       // Generate pseudo-random pattern based on selectedBizId
       let hash = 0;
@@ -52,11 +52,11 @@ export default function Customer() {
         }
       });
       [[0,0],[0,12],[12,0]].forEach(([r,c]) => {
-        ctx.fillStyle = '#1a2e1a';
+        ctx.fillStyle = '#0f172a';
         ctx.fillRect(c * cell, r * cell, 3 * cell, 3 * cell);
         ctx.fillStyle = '#fff';
         ctx.fillRect(c * cell + cell * 0.3, r * cell + cell * 0.3, cell * 2.4, cell * 2.4);
-        ctx.fillStyle = '#1a2e1a';
+        ctx.fillStyle = '#0f172a';
         ctx.fillRect(c * cell + cell * 0.7, r * cell + cell * 0.7, cell * 1.6, cell * 1.6);
       });
     }
@@ -88,7 +88,8 @@ export default function Customer() {
         navigator.vibrate([100, 50, 100]);
       }
       
-      const earned = Math.floor((amount / 100) * (biz.stars / 5));
+      const rawEarned = (amount / 100) * (biz.stars / 5);
+      const earned = amount < 50 ? parseFloat(rawEarned.toFixed(3)) : Math.floor(rawEarned);
       earnPoints(earned, biz.name);
       setShowQR(false);
       triggerToast(`🌿 Earned ${earned} EcoPoints!`);
@@ -116,7 +117,7 @@ export default function Customer() {
       <div className="grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-7 items-start">
         {/* Phone Mockup */}
         <div className="mx-auto w-full max-w-[380px] bg-eq-card border border-eq-border rounded-[40px] p-5 md:p-8 relative shadow-sm">
-          <div className="bg-[linear-gradient(135deg,#0B2A36_0%,#0F3A2E_60%,#123B2F_100%)] border border-eq-border rounded-[20px] p-7 text-center mb-6 relative overflow-hidden shadow-inner">
+          <div className="bg-[linear-gradient(135deg,#FFFFFF_0%,#F3F4F6_100%)] border border-eq-border rounded-[20px] p-7 text-center mb-6 relative overflow-hidden shadow-inner">
             <div className="absolute -top-7 -right-7 w-[120px] h-[120px] bg-eq-accent/10 rounded-full"></div>
             <div className="text-[0.75rem] uppercase tracking-[2px] text-eq-sec mb-1.5 relative z-10">Your Balance</div>
             <div className="font-display text-[3rem] font-bold text-eq-text tracking-[-2px] leading-none relative z-10">{balance.toLocaleString()}</div>
@@ -181,7 +182,7 @@ export default function Customer() {
               Points = (Transaction Amount ÷ 100) × (Business Star Rating ÷ 5)
             </p>
             <div className="bg-eq-accent/5 border border-eq-accent/15 rounded-xl p-3.5 mt-3">
-              <p className="text-[0.8rem] text-eq-accent font-semibold">Example: Spend ₹2000 at a 9-star eco-hotel → earn <b>36 points</b></p>
+              <p className="text-[0.8rem] text-eq-accent font-semibold">Example: Spend $200 at a 9-star eco-hotel → earn <b>36.000 points</b></p>
             </div>
           </div>
         </div>
@@ -208,7 +209,7 @@ export default function Customer() {
                 </select>
               </div>
               <div>
-                <label className="block text-[0.75rem] text-eq-sec mb-1 uppercase tracking-wider">Amount Paid (₹)</label>
+                <label className="block text-[0.75rem] text-eq-sec mb-1 uppercase tracking-wider">Amount Paid ($)</label>
                 <input 
                   type="number" 
                   value={transactionAmount}
@@ -224,7 +225,7 @@ export default function Customer() {
               {isScanning && (
                 <>
                   <div className="absolute inset-0 bg-eq-accent/10"></div>
-                  <div className="absolute top-0 left-0 w-full h-1 bg-eq-accent shadow-[0_0_15px_rgba(132,204,22,1)] animate-scan"></div>
+                  <div className="absolute top-0 left-0 w-full h-1 bg-eq-accent shadow-[0_0_15px_rgba(107,142,35,1)] animate-scan"></div>
                 </>
               )}
             </div>

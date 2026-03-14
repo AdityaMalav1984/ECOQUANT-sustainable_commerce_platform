@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-  --color-eq-bg: #0B2A36;
-  --color-eq-card: #123B2F;
-  --color-eq-accent: #84CC16;
-  --color-eq-data: #2DD4BF;
-  --color-eq-text: #F1F5F4;
-  --color-eq-sec: #94A3B8;
-  --color-eq-border: rgba(255,255,255,0.06);
+  --color-eq-bg: #F5F5F4;
+  --color-eq-card: #FFFFFF;
+  --color-eq-accent: #10B981;
+  --color-eq-data: #065F46;
+  --color-eq-text: #111827;
+  --color-eq-sec: #6B7280;
+  --color-eq-border: rgba(15,23,42,0.08);
 
   --color-bronze: #cd7f32;
   --color-silver: #9ea3a8;
@@ -42,7 +42,19 @@ body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background-image: linear-gradient(135deg, #0B2A36 0%, #0F3A2E 60%, #123B2F 100%);
+  background-image: linear-gradient(135deg, #F9FAFB 0%, #E5E7EB 50%, #F3F4F6 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(900px 480px at 12% 18%, rgba(16, 185, 129, 0.12), rgba(16, 185, 129, 0) 60%),
+    radial-gradient(760px 420px at 88% 12%, rgba(148, 163, 184, 0.12), rgba(148, 163, 184, 0) 55%),
+    radial-gradient(900px 520px at 62% 88%, rgba(16, 185, 129, 0.08), rgba(16, 185, 129, 0) 62%);
   pointer-events: none;
   z-index: 0;
 }
@@ -61,9 +73,9 @@ input[type=range]::-webkit-slider-thumb {
   background: var(--color-eq-accent);
   border-radius: 50%;
   border: 2px solid var(--color-eq-bg);
-  box-shadow: 0 0 0 3px rgba(132,204,22,0.2);
+  box-shadow: 0 0 0 3px rgba(107,142,35,0.22);
   transition: box-shadow 0.2s;
 }
 input[type=range]:hover::-webkit-slider-thumb {
-  box-shadow: 0 0 0 6px rgba(132,204,22,0.25);
+  box-shadow: 0 0 0 6px rgba(107,142,35,0.3);
 }
